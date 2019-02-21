@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TestPlantilla.Models.Solicitud>
+
+<select class="form-control" id="Solicitud" name="Solicitud">
+    @foreach (var item in Model)
+    {
+        <option value="@item.idSolicitud">@item.Lote</option>
+    }
+</select>
+

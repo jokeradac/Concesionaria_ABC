@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AgenciaModelStoreContainer" CdmEntityContainer="AgenciaContext">
+    <EntitySetMapping Name="Automovil">
+      <EntityTypeMapping TypeName="AgenciaModel.Automovil">
+        <MappingFragment StoreEntitySet="Automovil">
+          <ScalarProperty Name="Estetica" ColumnName="Estetica" />
+          <ScalarProperty Name="TipoTransmision" ColumnName="TipoTransmision" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Folio" ColumnName="Folio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bitacora">
+      <EntityTypeMapping TypeName="AgenciaModel.Bitacora">
+        <MappingFragment StoreEntitySet="Bitacora">
+          <ScalarProperty Name="Automovil" ColumnName="Automovil" />
+          <ScalarProperty Name="Solicitud" ColumnName="Solicitud" />
+          <ScalarProperty Name="idBitacora" ColumnName="idBitacora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitud">
+      <EntityTypeMapping TypeName="AgenciaModel.Solicitud">
+        <MappingFragment StoreEntitySet="Solicitud">
+          <ScalarProperty Name="Lote" ColumnName="Lote" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

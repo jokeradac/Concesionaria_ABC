@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TestPlantilla.Models.Solicitud>
+
+@{
+    ViewBag.Title = "Registro de Solicitudes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitudes</h2>
+
+<button class="btn btn-default btn-lg">
+    @Html.ActionLink("Agregar solicitud", "Crear")
+</button>
+<table class="table table-responsive table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lote)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Fecha.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lote)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { idSolicitud = item.idSolicitud }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Detalles", "Detalles", new { idSolicitud = item.idSolicitud }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { idSolicitud = item.idSolicitud  }, new { @class = "btn btn-danger Seliminado" })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script>
+        $(".Seliminado").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

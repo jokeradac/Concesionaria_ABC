@@ -1,0 +1,42 @@
+﻿@model TestPlantilla.Models.Bitacora
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Bitacora</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idBitacora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idBitacora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Automovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Automovil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>

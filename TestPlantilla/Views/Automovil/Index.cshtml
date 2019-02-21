@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TestPlantilla.Models.Automovil>
+
+@{
+    ViewBag.Title = "Registro de automoviles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Automoviles Registrados</h2>
+
+<button class="btn btn-default btn-lg">
+    @Html.ActionLink(" + Registrar un automovil", "Agregar")    
+</button>
+<br />
+<br />
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTransmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estetica)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTransmision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estetica)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { Folio = item.Folio }, new { @class = "btn btn-default"}) 
+            @Html.ActionLink("Detalles", "Detalles", new { Folio = item.Folio }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Eliminar", "Eliminar", new { Folio = item.Folio }, new { @class = "btn btn-danger Aeliminado" })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{ 
+    <script>
+        $(".Aeliminado").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

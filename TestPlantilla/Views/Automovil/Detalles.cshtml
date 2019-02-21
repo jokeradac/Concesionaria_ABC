@@ -1,0 +1,67 @@
+﻿@model TestPlantilla.Models.Automovil
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div class="content">
+    <h4>Automovil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Folio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Folio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTransmision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTransmision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estetica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estetica)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { Folio = Model.Folio }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

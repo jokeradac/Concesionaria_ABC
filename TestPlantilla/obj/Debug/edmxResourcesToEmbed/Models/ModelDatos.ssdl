@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgenciaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Automovil">
+    <Key>
+      <PropertyRef Name="Folio" />
+    </Key>
+    <Property Name="Folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marca" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Modelo" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Color" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="TipoTransmision" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Estetica" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bitacora">
+    <Key>
+      <PropertyRef Name="idBitacora" />
+    </Key>
+    <Property Name="idBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Solicitud" Type="int" Nullable="false" />
+    <Property Name="Automovil" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Lote" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bitacora_Automovil1">
+    <End Role="Automovil" Type="Self.Automovil" Multiplicity="1" />
+    <End Role="Bitacora" Type="Self.Bitacora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automovil">
+        <PropertyRef Name="Folio" />
+      </Principal>
+      <Dependent Role="Bitacora">
+        <PropertyRef Name="Automovil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bitacora_Solicitud">
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="1" />
+    <End Role="Bitacora" Type="Self.Bitacora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Solicitud">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="Bitacora">
+        <PropertyRef Name="Solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AgenciaModelStoreContainer">
+    <EntitySet Name="Automovil" EntityType="Self.Automovil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud" EntityType="Self.Solicitud" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bitacora_Automovil1" Association="Self.FK_Bitacora_Automovil1">
+      <End Role="Automovil" EntitySet="Automovil" />
+      <End Role="Bitacora" EntitySet="Bitacora" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bitacora_Solicitud" Association="Self.FK_Bitacora_Solicitud">
+      <End Role="Solicitud" EntitySet="Solicitud" />
+      <End Role="Bitacora" EntitySet="Bitacora" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TestPlantilla.Models.Automovil>
+
+<select class="form-control" id="Automovil" name="Automovil">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Folio">@item.Folio</option>
+    }
+</select>
+
+
+

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TestPlantilla.Models.Bitacora>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bitacoras</h2>
+
+<p>
+    @Html.ActionLink("Nueva Bitacora", "Crear")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idBitacora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Solicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Automovil)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idBitacora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Solicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Automovil)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editarb", new { Bitacora = item.idBitacora }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Detalles", "Detalles", new { Bitacora = item.idBitacora }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { Bitacora = item.idBitacora }, new { @class = "btn btn-danger Beliminado" })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script>
+        $(".Beliminado").click(function (event) {
+            if (!confirm('Estas seguro de eliminar ?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

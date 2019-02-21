@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgenciaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AgenciaContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Automovil" EntityType="AgenciaModel.Automovil" />
+    <EntitySet Name="Bitacora" EntityType="AgenciaModel.Bitacora" />
+    <EntitySet Name="Solicitud" EntityType="AgenciaModel.Solicitud" />
+    <AssociationSet Name="FK_Bitacora_Automovil1" Association="AgenciaModel.FK_Bitacora_Automovil1">
+      <End Role="Automovil" EntitySet="Automovil" />
+      <End Role="Bitacora" EntitySet="Bitacora" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bitacora_Solicitud" Association="AgenciaModel.FK_Bitacora_Solicitud">
+      <End Role="Solicitud" EntitySet="Solicitud" />
+      <End Role="Bitacora" EntitySet="Bitacora" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Automovil">
+    <Key>
+      <PropertyRef Name="Folio" />
+    </Key>
+    <Property Name="Folio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Marca" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Color" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="TipoTransmision" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Estetica" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bitacora" Relationship="AgenciaModel.FK_Bitacora_Automovil1" FromRole="Automovil" ToRole="Bitacora" />
+  </EntityType>
+  <EntityType Name="Bitacora">
+    <Key>
+      <PropertyRef Name="idBitacora" />
+    </Key>
+    <Property Name="idBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Solicitud" Type="Int32" Nullable="false" />
+    <Property Name="Automovil" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Automovil1" Relationship="AgenciaModel.FK_Bitacora_Automovil1" FromRole="Bitacora" ToRole="Automovil" />
+    <NavigationProperty Name="Solicitud1" Relationship="AgenciaModel.FK_Bitacora_Solicitud" FromRole="Bitacora" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Lote" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bitacora" Relationship="AgenciaModel.FK_Bitacora_Solicitud" FromRole="Solicitud" ToRole="Bitacora" />
+  </EntityType>
+  <Association Name="FK_Bitacora_Automovil1">
+    <End Type="AgenciaModel.Automovil" Role="Automovil" Multiplicity="1" />
+    <End Type="AgenciaModel.Bitacora" Role="Bitacora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automovil">
+        <PropertyRef Name="Folio" />
+      </Principal>
+      <Dependent Role="Bitacora">
+        <PropertyRef Name="Automovil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bitacora_Solicitud">
+    <End Type="AgenciaModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+    <End Type="AgenciaModel.Bitacora" Role="Bitacora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Solicitud">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="Bitacora">
+        <PropertyRef Name="Solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,43 @@
+﻿@model TestPlantilla.Models.Solicitud
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Solicitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lote)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <h4>@Html.ActionLink("Editar", "Editar", new { idSolicitud = Model.idSolicitud })</h4>
+    <h4>@Html.ActionLink("Regresar", "Index", new { @class = " col-md-4" })</h4>
+</p>
